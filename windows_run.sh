@@ -1,0 +1,1 @@
+docker container run --rm --name bilingual_book_maker --mount type=bind,source=$folder_path,target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/$book_name.epub" --openai_key $openai_key --no_limit --model gpt3 --language $language
