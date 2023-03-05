@@ -15,20 +15,14 @@ export book_name=${your_book_name}
 export openai_key=${your_api_key}
 export language=${your_language}
 ```
-## Run script
+## Run
 ```sh
 # build image
-# Windows PowerShell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-.\build.sh
-# linux
-chmod +777 build.sh
-./build.sh
+docker image build --tag bilingual_book_maker .
 
 # run container
 # Windows PowerShell
-.\windows_run.sh
+docker container run --rm --name bilingual_book_maker --mount type=bind,source=$folder_path,target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/$book_name.epub" --openai_key $openai_key --no_limit --model gpt3 --language $language
 # linux
-chmod +777 linux_run.sh
-./linux_run.sh
+docker container run --rm --name bilingual_book_maker --mount type=bind,source=${folder_path:-"$(pwd)/books"},target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/${book_name:-animal_farm}.epub" --openai_key "${openai_key}" --no_limit --model gpt3 --language "${language:-Traditional Chinese}"
 ```
