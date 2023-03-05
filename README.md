@@ -22,7 +22,7 @@ docker image build --tag bilingual_book_maker .
 
 # run container
 # Windows PowerShell
-docker container run --rm --name bilingual_book_maker --mount type=bind,source=$folder_path,target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/$book_name.epub" --openai_key $openai_key --no_limit --model gpt3 --language $language
+docker container run --rm --name bilingual_book_maker --mount type=bind,source=$folder_path,target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/$book_name.epub" --openai_key $openai_key --no_limit --language $language
 # linux
-docker container run --rm --name bilingual_book_maker --mount type=bind,source=${folder_path:-"$(pwd)/books"},target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/${book_name:-animal_farm}.epub" --openai_key "${openai_key}" --no_limit --model gpt3 --language "${language:-zh-hant}"
+docker container run --rm --name bilingual_book_maker --mount type=bind,source=${folder_path:-"$(pwd)/books"},target='/app/test_books' bilingual_book_maker --book_name "/app/test_books/${book_name:-animal_farm}.epub" --openai_key "${openai_key}" --no_limit --language "${language:-zh-hant}"
 ```
